@@ -1,10 +1,10 @@
 import React from 'react';
 
 import './app.css';
+import Login from './components/Login/login';
 
-function App() {
-  return <h1>hello :)</h1>
+function App({ authService }) {
+  return <Login authService={authService} />;
 }
 
 export default App;
-
