@@ -14,7 +14,7 @@ function App({ authService }) {
             <Login authService={authService} />;
           </Route>
           <Route exact path='/app'>
-            <Main />
+            <Main authService={authService} />
           </Route>
         </Switch>
       </BrowserRouter>

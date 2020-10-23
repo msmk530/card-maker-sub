@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Footer from '../Footer/footer';
 import Header from '../Header/header';
@@ -22,6 +23,12 @@ const Login = ({ authService }) => {
       .login(event.currentTarget.textContent)
       .then((data) => goToMain(data.user.uid));
   };
+
+  useEffect(() => {
+    authService.onAuthChange((user) => {
+      user && goToMain(user.uid);
+    });
+  });
 
   return (
     <section className={styles.login}>

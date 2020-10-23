@@ -5,7 +5,17 @@ import firebaseApp from './firebase';
 class AuthService {
   login(provider) {
     const authProvider = new firebase.auth[`${provider}AuthProvider`]();
-    return firebaseApp.auth().signInWithPopup(authProvider);
+    return firebase.auth().signInWithPopup(authProvider);
+  }
+
+  logout() {
+    firebase.auth().signOut();
+  }
+
+  onAuthChange(onUserChanged) {
+    firebase.auth().onAuthStateChanged((user) => {
+      onUserChanged(user);
+    });
   }
 }
 
