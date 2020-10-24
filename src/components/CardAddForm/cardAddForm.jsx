@@ -1,43 +1,76 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './styles/cardAddForm.module.css';
 import Button from '../Button/button';
 import ImageFileInput from '../ImageFileInput/imageFileInput';
 
-const CardAddForm = (props) => {
-  const onSubmit = () => {};
+const CardAddForm = ({ onAdd }) => {
+  const formRef = useRef();
+  const nameRef = useRef();
+  const companyRef = useRef();
+  const themeRef = useRef();
+  const titleRef = useRef();
+  const emailRef = useRef();
+  const messageRef = useRef();
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const card = {
+      id: Date.now(), // uuid사용하기
+      name: nameRef.current.value || '',
+      company: companyRef.current.value || '',
+      theme: themeRef.current.value,
+      title: titleRef.current.value || '',
+      email: emailRef.current.value || '',
+      message: messageRef.current.value || '',
+      fileName: '',
+      fileURL: '',
+    };
+    formRef.current.reset();
+    onAdd(card);
+  };
 
   return (
-    <form className={styles.form}>
+    <form ref={formRef} className={styles.form}>
       <input
+        ref={nameRef}
         className={styles.input}
         type='text'
         name='name'
         placeholder='Name'
       />
       <input
+        ref={companyRef}
         className={styles.input}
         type='text'
         name='company'
         placeholder='Company'
       />
-      <select className={styles.select} name='theme' placeholder='Theme'>
-        <option value='light'>Light</option>
-        <option value='dark'>Dark</option>
-        <option value='colorful'>Colorful</option>
+      <select
+        ref={themeRef}
+        className={styles.select}
+        name='theme'
+        placeholder='Theme'
+      >
+        <option value='light'>light</option>
+        <option value='dark'>dark</option>
+        <option value='colorful'>colorful</option>
       </select>
       <input
+        ref={titleRef}
         className={styles.input}
         type='text'
         name='title'
         placeholder='Title'
       />
       <input
+        ref={emailRef}
         className={styles.input}
         type='text'
         name='email'
         placeholder='Email'
       />
       <textarea
+        ref={messageRef}
         className={styles.textarea}
         name='message'
         placeholder='Message'
@@ -45,7 +78,7 @@ const CardAddForm = (props) => {
       <div className={styles.fileInput}>
         <ImageFileInput name='' onClick={onSubmit} />
       </div>
-      <Button name='Delete' onClick={onSubmit} />
+      <Button name='ADD' onClick={onSubmit} />
     </form>
   );
 };
