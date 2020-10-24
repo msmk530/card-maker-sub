@@ -1,0 +1,14 @@
+@value makerWhite,  makerPink from '../../../common/colors.css';
+
+.fileInput {
+  background-color: makerPink;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0.5em;
+  flex: 1 1 50%;
+  font-size: 0.8rem;
+}
+
+.fileInput:hover {
+  opacity: 0.8;
+}
