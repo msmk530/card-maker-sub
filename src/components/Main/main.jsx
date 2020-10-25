@@ -57,7 +57,7 @@ const Main = ({ FileInput, authService, cardService }) => {
         history.push('/');
       }
     });
-  });
+  }, [authService, userId, history]);
   return (
     <section className={styles.main}>
       <Header onLogout={onLogout} />

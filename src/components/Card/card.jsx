@@ -3,17 +3,7 @@ import styles from './styles/card.module.css';
 
 const DEFAULT_URL = '/images/default_logo.png';
 const Card = ({ card }) => {
-  const {
-    id,
-    name,
-    company,
-    theme,
-    email,
-    title,
-    message,
-    fileName,
-    fileURL,
-  } = card;
+  const { name, company, theme, email, title, message, fileURL } = card;
   const url = fileURL || DEFAULT_URL;
   return (
     <li className={`${styles.card} ${getStyles(theme)}`}>
