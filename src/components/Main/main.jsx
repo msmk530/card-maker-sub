@@ -7,7 +7,7 @@ import Header from '../Header/header';
 import Preview from '../Preview/preview';
 import styles from './styles/main.module.css';
 
-const Main = ({ authService }) => {
+const Main = ({ FileInput, authService }) => {
   const [cards, setCards] = useState({
     1: {
       id: '1',
@@ -78,6 +78,7 @@ const Main = ({ authService }) => {
       <Header onLogout={onLogout} />
       <div className={styles.container}>
         <Editor
+          FileInput={FileInput}
           cards={cards}
           addCard={createOrUpdateCard}
           updateCard={createOrUpdateCard}

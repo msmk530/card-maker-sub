@@ -5,7 +5,7 @@ import Main from './components/Main/main';
 import styles from './app.module.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-function App({ authService }) {
+function App({ FileInput, authService }) {
   return (
     <div className={styles.app}>
       <BrowserRouter>
@@ -14,7 +14,7 @@ function App({ authService }) {
             <Login authService={authService} />;
           </Route>
           <Route exact path='/app'>
-            <Main authService={authService} />
+            <Main FileInput={FileInput} authService={authService} />
           </Route>
         </Switch>
       </BrowserRouter>
