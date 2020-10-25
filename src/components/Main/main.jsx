@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Editor from '../Editor/editor';
@@ -15,9 +16,9 @@ const Main = ({ FileInput, authService, cardService }) => {
 
   const history = useHistory();
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService.logout();
-  };
+  }, [authService]);
 
   const createOrUpdateCard = (card) => {
     setCards((cards) => {

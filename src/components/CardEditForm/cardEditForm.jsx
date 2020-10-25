@@ -1,8 +1,9 @@
 import React from 'react';
+import { memo } from 'react';
 import Button from '../Button/button';
 import styles from './styles/cardEditForm.module.css';
 
-const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
+const CardEditForm = memo(({ FileInput, card, updateCard, deleteCard }) => {
   const { name, company, theme, email, title, message, fileName } = card;
 
   const onFileChange = (file) => {
@@ -80,6 +81,6 @@ const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
       <Button name='Delete' onClick={onSubmit} />
     </form>
   );
-};
+});
 
 export default CardEditForm;
