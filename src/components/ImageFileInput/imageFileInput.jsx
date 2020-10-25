@@ -1,13 +1,16 @@
 import React from 'react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from './styles/imageFileInput.module.css';
 
 const ImageFileInput = ({ imageService, name, onFileChange }) => {
+  const [loading, setLoading] = useState(false);
+
   const inputRef = useRef();
 
   const onChange = async (event) => {
+    setLoading(true);
     const uploaded = await imageService.upload(event.target.files[0]);
-
+    setLoading(false);
     onFileChange({
       name: uploaded.original_filename,
       url: uploaded.url,
@@ -29,9 +32,15 @@ const ImageFileInput = ({ imageService, name, onFileChange }) => {
         name='file'
         onChange={onChange}
       />
-      <button className={styles.button} onClick={onButtonClick}>
-        {name || 'No file'}
-      </button>
+      {!loading && (
+        <button
+          className={`${styles.button} ${name ? styles.pink : styles.grey}`}
+          onClick={onButtonClick}
+        >
+          {name || 'No file'}
+        </button>
+      )}
+      {loading && <div className={styles.loading}></div>}
     </div>
   );
 };

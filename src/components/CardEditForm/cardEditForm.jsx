@@ -3,17 +3,7 @@ import Button from '../Button/button';
 import styles from './styles/cardEditForm.module.css';
 
 const CardEditForm = ({ FileInput, card, updateCard, deleteCard }) => {
-  const {
-    id,
-    name,
-    company,
-    theme,
-    email,
-    title,
-    message,
-    fileName,
-    fileURL,
-  } = card;
+  const { name, company, theme, email, title, message, fileName } = card;
 
   const onFileChange = (file) => {
     updateCard({
