@@ -1,10 +1,10 @@
 class ImageService {
   async upload(file) {
-    const url = 'https://api.cloudinary.com/v1_1/minseop/image/upload';
+    const url = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`;
     const formData = new FormData();
 
     formData.append('file', file);
-    formData.append('upload_preset', 'hqbrvsye');
+    formData.append('upload_preset', process.env.REACT_APP_CLOUDINARY_PRESET);
 
     const res = await fetch(url, {
       method: 'POST',
