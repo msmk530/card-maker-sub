@@ -38,6 +38,18 @@ const Main = ({ FileInput, authService, cardService }) => {
   };
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
+
+    const stopSync = cardService.syncCards(userId, (cards) => {
+      setCards(cards);
+    });
+
+    return () => stopSync();
+  }, [userId, cardService]);
+
+  useEffect(() => {
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid);
