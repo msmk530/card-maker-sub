@@ -32,6 +32,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
       fileURL: file.fileURL || '',
     };
     formRef.current.reset();
+    setFile({ fileName: file.name, fileURL: file.url });
     onAdd(card);
   };
 
@@ -82,7 +83,7 @@ const CardAddForm = ({ FileInput, onAdd }) => {
         placeholder='Message'
       />
       <div className={styles.fileInput}>
-        <FileInput onFileChange={onFileChange} />
+        <FileInput name={file.fileName} onFileChange={onFileChange} />
       </div>
       <Button name='ADD' onClick={onSubmit} />
     </form>
